@@ -1,7 +1,7 @@
 import { Lightbulb, Volume2 } from "lucide-react";
 import React, { useEffect } from "react";
 
-function MockInterviewQ({ mockInterviewQuestions, activeQIndex }) {
+function MockInterviewQ({ mockInterviewQuestions, activeQIndex, setActiveQIndex }) {
   console.log(mockInterviewQuestions);
 
   const textToSpeach = (text) => {
@@ -18,15 +18,22 @@ function MockInterviewQ({ mockInterviewQuestions, activeQIndex }) {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {mockInterviewQuestions.map((question, index) => (
             <h2
-              className={`p-2 bg-secondary rounded-full text-xs md:text-sm text-center cursor-pointer
-            ${activeQIndex == index && "bg-blue-300 text-blue-700 border-2"}`}
+              className={`p-2 rounded-full bg-blue-200 text-xs md:text-sm text-center cursor-pointer
+            ${activeQIndex == index && "text-white bg-blue-600 font-bold"}`}
             >
               Question {index + 1}
             </h2>
           ))}
         </div>
         <h2 className="my-5 text-sm md:text-md">
-          <b className="flex flex-row gap-2 items-center">Qus. : <Volume2 onClick={()=> textToSpeach(mockInterviewQuestions[activeQIndex].question)}/>  </b>
+          <b className="flex flex-row gap-2 items-center">
+            Qus. :{" "}
+            <Volume2
+              onClick={() =>
+                textToSpeach(mockInterviewQuestions[activeQIndex].question)
+              }
+            />{" "}
+          </b>
           {mockInterviewQuestions[activeQIndex].question}
         </h2>
         <div className="border rounded-lg p-5 bg-blue-200">
